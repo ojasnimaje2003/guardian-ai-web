@@ -64,7 +64,9 @@ export default function SettingsPage() {
                 status={
                   accessibilityService === "granted" ? "granted" : "not-granted"
                 }
-                onFix={() => router.push("/onboarding/accessibility")}
+                onFix={() =>
+                  router.push("/onboarding/accessibility?from=settings")
+                }
               />
             </>
           )}

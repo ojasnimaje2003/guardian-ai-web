@@ -18,7 +18,10 @@ import { Spinner } from "@/components/design-system/loading";
  * to hand off to in a browser, so "Open Settings" simulates the entire
  * round trip (the wait, the automatic re-check on "return") rather than
  * a fake Settings UI, which would misrepresent a mechanism this
- * prototype cannot actually perform.
+ * prototype cannot actually perform. Once granted, the flow resumes
+ * exactly where it left off: onward to the next onboarding step during
+ * first-time setup, or back to Settings/Home for the "Fix" repair path,
+ * depending on which one linked here.
  */
 export default function AccessibilityPermissionPage() {
   const router = useRouter();
@@ -36,7 +39,12 @@ export default function AccessibilityPermissionPage() {
 
   function afterResolved() {
     if (isRepairMode) {
-      router.push("/home");
+      // Settings' "Fix" link tags its navigation with ?from=settings so
+      // the round trip returns there; Home's "Fix this" navigates here
+      // with no query and expects to land back on Home (docs/13 §7).
+      const cameFromSettings =
+        new URLSearchParams(window.location.search).get("from") === "settings";
+      router.push(cameFromSettings ? "/settings" : "/home");
     } else {
       setOnboardingStep("contact");
       router.push("/onboarding/contact");
