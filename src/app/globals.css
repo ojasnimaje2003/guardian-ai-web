@@ -1,0 +1,197 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design tokens ported from docs/15 (Figma Blueprint — Visual Design Spec),
+ * Task 2: Design System. Values are the frozen MD3 role mapping, not
+ * reinterpreted. Dark mode is explicitly out of scope for the MVP
+ * (docs/15 Task 5: "No screen in this file requires a dark-mode-specific
+ * pass at MVP") — the .dark block below intentionally mirrors :root rather
+ * than defining a second palette, kept only so the token *shape* stays
+ * ready for a future pass, per docs/15's own "cheap mode/collection swap
+ * later" rationale for using variables over static styles.
+ */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+
+  /* Custom extended MD3 color roles — docs/15 Task 2. Standard MD3 defines
+     one `error` role; this product's alert semantics need three distinct
+     tiers (calm handled by primary / attention / concern) plus a fourth
+     configuration-state tier (protection off), so these are defined as
+     custom extended roles alongside the standard MD3 roles. */
+  --color-concern: var(--concern);
+  --color-concern-container: var(--concern-container);
+  --color-attention-container: var(--attention-container);
+  --color-attention-container-foreground: var(--attention-container-foreground);
+  --color-protection-off: var(--protection-off);
+  --color-protection-off-container: var(--protection-off-container);
+
+  /* Corner radius — docs/15 Task 2. 8dp buttons is a deliberate deviation
+     from MD3's default pill/stadium shape (a pill reads casual/playful;
+     this product's calm, serious positioning wants restrained geometry). */
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-button: var(--radius-button);
+  --radius-card: var(--radius-card);
+  --radius-dialog: var(--radius-dialog);
+
+  /* Spacing scale — docs/15 Task 2, 8dp base unit, named to match the
+     doc's own vocabulary (space.xs/sm/md/lg/xl/xxl) directly. */
+  --spacing-xs: 0.25rem; /* 4dp */
+  --spacing-sm: 0.5rem; /* 8dp */
+  --spacing-md: 1rem; /* 16dp */
+  --spacing-lg: 1.5rem; /* 24dp */
+  --spacing-xl: 2rem; /* 32dp */
+  --spacing-2xl: 3rem; /* 48dp, doc's space.xxl */
+
+  /* Typography scale — docs/15 Task 2. Sizes/line-heights are the frozen
+     spec; apply font-semibold in component code for display/heading per
+     the doc's noted Semi-Bold deviation from MD3's default Regular weight. */
+  --text-display: 1.75rem; /* 28sp */
+  --text-display--line-height: 2.25rem; /* 36 */
+  --text-heading: 1.25rem; /* 20sp */
+  --text-heading--line-height: 1.75rem; /* 28 */
+  --text-body-lg: 1.125rem; /* 18sp — accessibility default, not maximum */
+  --text-body-lg--line-height: 1.625rem; /* 26 */
+  --text-body: 1rem; /* 16sp */
+  --text-body--line-height: 1.5rem; /* 24 */
+  --text-caption: 0.875rem; /* 14sp */
+  --text-caption--line-height: 1.25rem; /* 20 */
+  --text-numeric: 1.125rem; /* 18sp — pair with `tabular-nums` utility */
+  --text-numeric--line-height: 1.75rem; /* 28 */
+
+  /* Content max-width — docs/15 Task 2: "Content max-width 360dp on any
+     single column even on larger phones." */
+  --width-content: 22.5rem; /* 360dp */
+
+  /* Motion — docs/15 Task 4. Standard (not Emphasized) easing is used at
+     every duration token in this app, a deliberate, documented departure
+     from MD3's own default recommendation, in service of the calm/
+     restrained visual philosophy (Task 1). Durations themselves use
+     Tailwind's built-in numeric/arbitrary `duration-*` utilities directly
+     (e.g. `duration-200`, `duration-[50ms]`) rather than named theme
+     tokens — see src/components/design-system/motion.ts for the
+     documented duration/label mapping components should reference. */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+}
+
+:root {
+  /* MD3 role mapping — docs/15 Task 2 color palette table */
+  --background: #faf9f6; /* surface — warm off-white, deliberately not pure white */
+  --foreground: #1c1e1f; /* onSurface */
+  --card: #edeae3; /* surfaceVariant — History rows, Settings rows */
+  --card-foreground: #1c1e1f;
+  --popover: #ffffff;
+  --popover-foreground: #1c1e1f;
+  --primary: #2e5d4e; /* inherited brand teal-green */
+  --primary-foreground: #ffffff;
+  --secondary: #cfe8dc; /* primaryContainer — filled-tonal surfaces */
+  --secondary-foreground: #0a2a20; /* onPrimaryContainer */
+  --muted: #edeae3; /* surfaceVariant */
+  --muted-foreground: #5b6560; /* derived muted text tone — not specified in docs/15; an engineering judgment call for secondary/disabled text contrast against surface, revisit if flagged during a visual QA pass */
+  --accent: #f3e1c4; /* attentionContainer */
+  --accent-foreground: #5c3f0a;
+  --destructive: #a6473a; /* concern — muted red-orange, not MD3's saturated error red */
+  --destructive-foreground: #ffffff;
+  --border: #79747e; /* outline */
+  --input: #79747e; /* outline */
+  --ring: #2e5d4e; /* primary, for focus rings */
+  --radius: 0.75rem; /* 12dp base, matches Card's MD3 "Medium" token */
+
+  /* Custom extended MD3 roles */
+  --concern: #a6473a;
+  --concern-container: #f6dfda;
+  --attention-container: #f3e1c4;
+  --attention-container-foreground: #5c3f0a;
+  --protection-off: #b8791e; /* reuses the inherited color.attention amber, per docs/15 */
+  --protection-off-container: #f6e9d4;
+
+  /* Frozen corner-radius exceptions */
+  --radius-button: 0.5rem; /* 8dp */
+  --radius-card: 0.75rem; /* 12dp */
+  --radius-dialog: 1rem; /* 16dp */
+}
+
+.dark {
+  /* Intentionally identical to :root — dark mode is out of scope for the
+     frozen MVP (docs/15 Task 5). Present only so the variable shape is
+     ready if a future milestone reopens this scope. */
+  --background: #faf9f6;
+  --foreground: #1c1e1f;
+  --card: #edeae3;
+  --card-foreground: #1c1e1f;
+  --popover: #ffffff;
+  --popover-foreground: #1c1e1f;
+  --primary: #2e5d4e;
+  --primary-foreground: #ffffff;
+  --secondary: #cfe8dc;
+  --secondary-foreground: #0a2a20;
+  --muted: #edeae3;
+  --muted-foreground: #5b6560;
+  --accent: #f3e1c4;
+  --accent-foreground: #5c3f0a;
+  --destructive: #a6473a;
+  --destructive-foreground: #ffffff;
+  --border: #79747e;
+  --input: #79747e;
+  --ring: #2e5d4e;
+  --concern: #a6473a;
+  --concern-container: #f6dfda;
+  --attention-container: #f3e1c4;
+  --attention-container-foreground: #5c3f0a;
+  --protection-off: #b8791e;
+  --protection-off-container: #f6e9d4;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+/*
+ * Checkmark-draw keyframe — docs/15 Task 3 Screen 6 (Onboarding
+ * Complete): "a restrained checkmark-draw animation (under 400ms ...)
+ * explicitly not a celebratory bounce or confetti pattern." Used by
+ * src/components/design-system/checkmark-draw.tsx — the one motion
+ * primitive that needs a real keyframe rather than a Tailwind utility.
+ */
+@keyframes checkmark-draw {
+  from {
+    stroke-dashoffset: 24;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}

@@ -1,0 +1,12 @@
+node_modules
+.next
+out
+build
+public
+package-lock.json
+
+# Frozen source-of-truth documentation — never auto-reformatted.
+# See CLAUDE.md §5 (Documentation Rules): docs are the source of truth and
+# must never be silently changed, including by tooling side effects.
+CLAUDE.md
+docs/
