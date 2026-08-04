@@ -15,7 +15,7 @@ import type {
 } from "@/data/types";
 
 /**
- * Simulated client-side app state — this prototype's stand-in for the
+ * Simulated client-side app state: this prototype's stand-in for the
  * Android app's Repository layer (docs/14 §8/§17: EmergencyContactRepository,
  * PermissionStatusRepository, SettingsRepository). There is no backend and
  * no real OS permission system in a browser, so this Context +
@@ -38,7 +38,7 @@ interface AppState {
   phoneState: PermissionState;
   accessibilityService: PermissionState;
   emergencyContact: EmergencyContact | null;
-  /** docs/14 §8 AlertHistoryRepository — append-only, reverse-chronological on read. */
+  /** docs/14 §8 AlertHistoryRepository: append-only, reverse-chronological on read. */
   alertHistory: AlertHistoryEntry[];
 }
 
@@ -53,13 +53,13 @@ const DEFAULT_STATE: AppState = {
 const STORAGE_KEY = "guardian-ai-prototype-state";
 
 interface AppStateContextValue extends AppState {
-  /** False until the persisted state has been read from localStorage — screens that redirect based on state must wait for this. */
+  /** False until the persisted state has been read from localStorage. Screens that redirect based on state must wait for this. */
   isHydrated: boolean;
   setOnboardingStep: (step: OnboardingStep) => void;
   setPhoneState: (state: PermissionState) => void;
   setAccessibilityService: (state: PermissionState) => void;
   setEmergencyContact: (contact: EmergencyContact | null) => void;
-  /** Appends one entry — Alert History is append-only (docs/14 §8). */
+  /** Appends one entry: Alert History is append-only (docs/14 §8). */
   addAlertHistoryEntry: (entry: AlertHistoryEntry) => void;
 }
 
@@ -74,7 +74,7 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
       const raw = window.localStorage.getItem(STORAGE_KEY);
       if (raw) setState({ ...DEFAULT_STATE, ...JSON.parse(raw) });
     } catch {
-      // Corrupt or inaccessible storage — fall back to defaults silently;
+      // Corrupt or inaccessible storage: fall back to defaults silently;
       // this is prototype convenience state, not data worth failing over.
     }
     setIsHydrated(true);
@@ -114,7 +114,7 @@ export function useAppState() {
   return ctx;
 }
 
-/** docs/13 Screen 7 — Active only when both permissions are granted. */
+/** docs/13 Screen 7: Active only when both permissions are granted. */
 export function deriveProtectionStatus(
   phoneState: PermissionState,
   accessibilityService: PermissionState

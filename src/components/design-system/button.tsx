@@ -5,23 +5,23 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 /**
- * Button — docs/15 Task 2 "Components → Buttons".
+ * Button: docs/15 Task 2 "Components → Buttons".
  *
  * Three emphasis tiers, used deliberately, mapped to the frozen UX spec's
- * own described emphasis levels — not a generic button with arbitrary
+ * own described emphasis levels, not a generic button with arbitrary
  * variants:
- * - `filled` (highest emphasis) — "Get started," "Save," "Continue,"
+ * - `filled` (highest emphasis): "Get started," "Save," "Continue,"
  *   "End the call now" (with `tone="concern"`).
- * - `filled-tonal` (medium emphasis) — "Notify [Contact Name]," "Choose
+ * - `filled-tonal` (medium emphasis): "Notify [Contact Name]," "Choose
  *   from contacts."
- * - `text` (lowest emphasis) — "This is fine," "Not now," "Skip for
+ * - `text` (lowest emphasis): "This is fine," "Not now," "Skip for
  *   now." Deliberately the smallest, least visually prominent tier, per
  *   the frozen UX spec's explicit instruction that dismissal must remain
  *   honestly available without ever looking like the recommended path.
  *
  * `tone="concern"` is the one documented color override (Scam Warning's
- * "End the call now", the Remove-contact dialog's destructive action) —
- * it is not a generic "danger" tone for arbitrary use; see Alert (§
+ * "End the call now", the Remove-contact dialog's destructive action).
+ * It is not a generic "danger" tone for arbitrary use; see Alert (§
  * alert.tsx) for non-threat error/attention states, which deliberately
  * do NOT use concern coloring (docs/15 Task 2, Error components).
  *

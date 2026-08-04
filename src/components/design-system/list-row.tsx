@@ -3,8 +3,8 @@ import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 /**
- * ListRow — docs/15 Task 2 "Components → Lists": "MD3 List Item,
- * two-line variant" — the base building block `SettingsRow` and
+ * ListRow: docs/15 Task 2 "Components → Lists": "MD3 List Item,
+ * two-line variant": the base building block `SettingsRow` and
  * `HistoryListItem` compose from.
  *
  * Renders as a `<button>` when `onClick` is given (the whole row is one

@@ -6,8 +6,8 @@ import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 /**
- * HistoryListItem — docs/15 Component Inventory: "History List Item
- * (expandable) — Alert History — Collapsed: date, pattern label, action
+ * HistoryListItem: docs/15 Component Inventory: "History List Item
+ * (expandable), Alert History. Collapsed: date, pattern label, action
  * taken. Expanded: full original explanation text, verbatim." Docs/13
  * Screen 9: "a historical record should show what was actually said
  * then, not a regenerated summary, preserving trust that the record is
@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
  * This fulfills the "Timeline component" objective (a chronological,
  * expandable alert record) using the frozen spec's own name and shape.
  * It is **not** the deferred Fraud Timeline feature (docs/12: Won't-Have
- * for MVP, V2/V3 scope) — no risk scores, cross-institution data, or
+ * for MVP, V2/V3 scope): no risk scores, cross-institution data, or
  * anything beyond this product's one detection pattern belongs here.
  */
 export function HistoryListItem({
@@ -46,7 +46,7 @@ export function HistoryListItem({
         <span className="gap-xs flex flex-1 flex-col">
           <span className="text-body text-foreground">{patternLabel}</span>
           <span className="text-caption text-muted-foreground">
-            {date} — {actionTakenLabel}
+            {date}, {actionTakenLabel}
           </span>
         </span>
         <ChevronDown

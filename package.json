@@ -1,7 +1,7 @@
 {
   "name": "guardian-ai-web",
   "version": "1.0.0",
-  "description": "Interactive web prototype of Guardian AI, a real-time scam-call protection product — every screen and flow from the frozen Android MVP spec, rebuilt for the browser with a guided, end-to-end demo.",
+  "description": "Interactive web prototype of Guardian AI, a real-time scam-call protection product: every screen and flow from the frozen Android MVP spec, rebuilt for the browser with a guided, end-to-end demo.",
   "keywords": [
     "guardian-ai",
     "scam-prevention",

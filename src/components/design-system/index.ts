@@ -1,11 +1,11 @@
 /**
- * Guardian AI design system — barrel export.
+ * Guardian AI design system: barrel export.
  *
  * See README.md in this directory for the full catalog (each
  * component's docs/15 source, variants, and intended use). This file
- * implements Milestone 2's component library only — no screen imports
- * from here directly builds a page; screens (Milestone 3+) compose
- * these.
+ * implements Milestone 2's component library only: no screen imports
+ * this directly to build a page. Screens (Milestone 3+) compose these
+ * components instead.
  */
 
 export * from "./alert";

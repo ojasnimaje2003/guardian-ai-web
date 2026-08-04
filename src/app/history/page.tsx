@@ -15,7 +15,7 @@ import { HistoryListItem } from "@/components/design-system/history-list-item";
 import { ListRowSkeleton } from "@/components/design-system/loading";
 
 /**
- * Alert History — docs/13 Screen 9. Real data now: every completed
+ * Alert History: docs/13 Screen 9. Real data now: every completed
  * Scam Warning (from the Demo Mode simulation) appends an entry via
  * `addAlertHistoryEntry`, already stored reverse-chronologically
  * (newest first, docs/13's required order) since new entries are
@@ -53,7 +53,7 @@ export default function AlertHistoryPage() {
                 entry.actionTaken,
                 contactName
               )}
-              expandedContent={`${entry.detectedAppName} opened during your call — scammers often ask for this to access your phone or accounts.`}
+              expandedContent={`${entry.detectedAppName} opened during your call. Scammers often ask for this to access your phone or accounts.`}
             />
           ))
         )}

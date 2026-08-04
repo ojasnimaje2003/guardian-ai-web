@@ -1,11 +1,11 @@
 # Milestone 1 Implementation Report
-### Guardian AI Web Prototype — Frontend Foundation
+### Guardian AI Web Prototype: Frontend Foundation
 
 *Prepared against the frozen product spec (`docs/12`–`15`) and the
 implementation strategy agreed in this session (story-first presentation
 layer with an optional Demo Mode, layered over the unchanged frozen
-product). This report documents what was built, not what was decided —
-product/UX decisions remain owned by `docs/12`–`15`.*
+product). This report documents what was built, not what was decided.
+Product/UX decisions remain owned by `docs/12`–`15`.*
 
 ---
 
@@ -22,7 +22,7 @@ proving the shell, tokens, and routing work end-to-end.
 
 **Per the milestone's explicit scope, no Guardian AI screens, onboarding,
 dashboard functionality, or simulations were implemented.** Both routes
-are intentionally minimal placeholders — this milestone is foundation
+are intentionally minimal placeholders. This milestone is foundation
 only.
 
 ---
@@ -75,7 +75,7 @@ was temporarily moved aside during scaffolding to satisfy
 
 | Layer | Choice | Version |
 |---|---|---|
-| Framework | Next.js, App Router, `src/` layout | **15.5.22** (pinned to the 15.x line per instruction — see §8) |
+| Framework | Next.js, App Router, `src/` layout | **15.5.22** (pinned to the 15.x line per instruction, see §8) |
 | Language | TypeScript, `strict: true` | ^5 |
 | Styling | Tailwind CSS | ^4 (CSS-first `@theme`, no `tailwind.config.js`) |
 | Component layer | shadcn/ui | Base UI primitives, **Nova** preset, Lucide icons |
@@ -85,11 +85,11 @@ was temporarily moved aside during scaffolding to satisfy
 
 **A note on the shadcn "component library" choice:** the CLI's current
 default is **Base UI** (not Radix, which most existing shadcn examples
-assume) — I accepted the CLI's own recommended default rather than
+assume). I accepted the CLI's own recommended default rather than
 picking Radix from memory, since fighting the tool's current default
 would add churn for no benefit at this stage. The practical consequence:
 polymorphic composition uses Base UI's `render={<Element />}` prop, not
-Radix's `asChild` — used in both placeholder pages' buttons (§6) and
+Radix's `asChild`, used in both placeholder pages' buttons (§6) and
 worth knowing before building real components later.
 
 ---
@@ -99,7 +99,7 @@ worth knowing before building real components later.
 `src/app/globals.css` replaces shadcn's generic neutral-gray defaults
 with the exact MD3 role mapping from `docs/15` Task 2:
 
-- **Color roles** — `primary` (#2E5D4E), `primaryContainer`→`secondary`
+- **Color roles**: `primary` (#2E5D4E), `primaryContainer`→`secondary`
   (#CFE8DC), `surface`→`background` (#FAF9F6), `surfaceVariant`→`card`/
   `muted` (#EDEAE3), `outline`→`border`/`input` (#79747E), plus the three
   **custom extended roles** the doc specifies beyond standard MD3:
@@ -107,23 +107,23 @@ with the exact MD3 role mapping from `docs/15` Task 2:
   `attentionContainer`, and `protectionOff`/`protectionOffContainer`
   (added as new custom tokens, since MD3/shadcn has no built-in
   equivalent).
-- **Typography scale** — all six tokens (`display`, `heading`,
+- **Typography scale**: all six tokens (`display`, `heading`,
   `body-large`, `body`, `caption`, `numeric`) ported as paired
   `--text-*`/`--text-*--line-height` Tailwind v4 theme entries, generating
   `text-display`, `text-heading`, etc. utilities directly.
-- **Spacing** — the 8dp-base scale (`xs`/`sm`/`md`/`lg`/`xl`/`2xl`) added
+- **Spacing**: the 8dp-base scale (`xs`/`sm`/`md`/`lg`/`xl`/`2xl`) added
   as named Tailwind spacing tokens, matching the doc's own vocabulary
   (`gap-lg`, `p-md`) rather than relying on Tailwind's numeric scale.
-- **Corner radius** — the three frozen, deliberate MD3 deviations (8dp
+- **Corner radius**: the three frozen, deliberate MD3 deviations (8dp
   buttons, 12dp cards, 16dp dialogs) as explicit `--radius-button`/
   `--radius-card`/`--radius-dialog` tokens, alongside `--radius` (12dp)
   driving shadcn's own `rounded-sm/md/lg/xl` scale.
-- **Content max-width** — 360dp, as `--width-content`, used by the app
+- **Content max-width**: 360dp, as `--width-content`, used by the app
   shell.
 
 **Font:** no custom webfont is loaded. `docs/15`'s Typography Rationale
 specifies the system default font stack deliberately ("no custom typeface
-licensing/loading cost for a one-engineer build") — the scaffold's
+licensing/loading cost for a one-engineer build"). The scaffold's
 default Geist Sans/Mono Google Fonts loading was removed from
 `layout.tsx`; Tailwind's default `font-sans` (the system-ui stack)
 satisfies the spec directly.
@@ -131,11 +131,11 @@ satisfies the spec directly.
 **Dark mode:** `docs/15` Task 5 states plainly that dark mode is out of
 scope for the MVP. The `.dark` CSS class block is present (shadcn's
 scaffold expects the token shape) but is set **identical** to `:root`,
-with a comment explaining why — not a second palette, just keeping the
+with a comment explaining why, not a second palette, just keeping the
 variable shape ready in case a future milestone reopens this scope.
 
 **One undocumented value:** `--muted-foreground` (#5B6560, a secondary/
-disabled-text tone) isn't specified anywhere in `docs/15` — it's an
+disabled-text tone) isn't specified anywhere in `docs/15`: it's an
 engineering judgment call for a token shadcn's primitives need but the
 frozen spec doesn't define. Flagged here per CLAUDE.md's spirit of
 surfacing gaps rather than silently inventing product decisions; revisit
@@ -149,18 +149,18 @@ Nine shadcn/ui primitives installed as a **generic foundation layer**,
 deliberately left unskinned: `Button`, `Card` (+ subcomponents), `Input`,
 `Badge`, `Dialog`, `Sheet`, `Skeleton`, `Separator`, `Label`. These are
 shadcn's stock components, not yet the Guardian AI-specific variants
-`docs/15` Task 2 describes (Button's three emphasis tiers — Filled/
-FilledTonal/Text — mapped to `concern` coloring on Scam Warning, Card's
+`docs/15` Task 2 describes (Button's three emphasis tiers, Filled/
+FilledTonal/Text, mapped to `concern` coloring on Scam Warning, Card's
 Filled-vs-Outlined states for the Status Card, etc.). Skinning them to
 those exact specs is deferred to the milestone that actually builds
 Guardian AI's screens, per this milestone's explicit "do not implement
-Guardian AI screens yet" boundary — building final component variants
+Guardian AI screens yet" boundary. Building final component variants
 now, with no real screen to validate them against, would be exactly the
 premature/placeholder work the project's engineering principles warn
 against.
 
 `src/components/shared/app-shell.tsx` is a minimal layout wrapper (a
-plain header + centered, width-capped content column) — also explicitly
+plain header + centered, width-capped content column), also explicitly
 not yet Screen 7's real top app bar; it exists only to prove the shell/
 token/routing pipeline end-to-end.
 
@@ -172,8 +172,8 @@ Two routes, both placeholders:
 
 | Route | File | Purpose |
 |---|---|---|
-| `/` | `src/app/page.tsx` | Placeholder Home — will become the Interactive Dashboard (docs/13 Screen 7) |
-| `/demo` | `src/app/demo/page.tsx` | Placeholder Demo Mode entry — the future guided, cinematic simulation |
+| `/` | `src/app/page.tsx` | Placeholder Home: will become the Interactive Dashboard (docs/13 Screen 7) |
+| `/demo` | `src/app/demo/page.tsx` | Placeholder Demo Mode entry: the future guided, cinematic simulation |
 
 Each links to the other (Home → "Try Demo Mode" → `/demo`; Demo Mode →
 "Back to Home" → `/`) purely to verify `next/link` navigation and the
@@ -190,21 +190,21 @@ union, `PermissionsSnapshot`/`PermissionState`, `AccessibilityPrefs`) and
 §10 (`ProtectionStatus`). `src/data/mock-data.ts` provides sample
 instances of each, plus the known screen-share app list from §10
 (AnyDesk, TeamViewer QuickSupport/Host) for future use by the simulated
-detection flow. **Nothing yet consumes this data** — no screen reads from
-it — it exists purely as a typed foundation for the next milestone.
+detection flow. **Nothing yet consumes this data**: no screen reads from
+it. It exists purely as a typed foundation for the next milestone.
 
 ---
 
 ## 8. Known Issues & Flagged Decisions
 
-- **`npm audit` reports 3 high-severity findings** (`postcss`, `sharp`) —
-  both are transitive dependencies bundled inside `next@15.5.22` itself.
+- **`npm audit` reports 3 high-severity findings** (`postcss`, `sharp`),
+  both transitive dependencies bundled inside `next@15.5.22` itself.
   The only fix path `npm audit fix --force` offers is a forced upgrade to
   `next@16.3.0`, which directly contradicts the "Initialize Next.js 15"
   instruction. **Decision: stayed on 15.x, did not silently bump the major
   version.** These are build/dev-time (PostCSS sourcemap handling) and
   image-optimization-time (`sharp`/libvips) vulnerabilities, not exposed
-  by anything this prototype's own code does — an accepted, visible risk,
+  by anything this prototype's own code does: an accepted, visible risk,
   not a silent one. Worth revisiting if/when the product owner is ready
   to move to Next 16.
 - **Base UI vs. Radix (§3):** the shadcn CLI's current default component
@@ -212,10 +212,10 @@ it — it exists purely as a typed foundation for the next milestone.
   default; means `render={<Element />}` is this project's polymorphic
   composition pattern going forward, not `asChild`.
 - **`--muted-foreground` value (§4)** is an engineering judgment call, not
-  a value from `docs/15` — flagged for a future visual QA pass.
+  a value from `docs/15`, flagged for a future visual QA pass.
 - **Prettier initially reformatted `CLAUDE.md` and `docs/*.md`** when
   `npm run format` was first run project-wide, since `.prettierignore`
-  didn't yet exclude them — a tooling side effect, caught immediately via
+  didn't yet exclude them: a tooling side effect, caught immediately via
   `git status`/`git diff`, reverted with `git checkout -- CLAUDE.md docs/`
   before anything was committed, and fixed by adding `CLAUDE.md` and
   `docs/` to `.prettierignore` with a comment explaining why. No frozen
@@ -235,13 +235,13 @@ it — it exists purely as a typed foundation for the next milestone.
 
 ## 9. Verification Performed
 
-- `npm run format` — Prettier applied cleanly across the project (Tailwind
+- `npm run format`: Prettier applied cleanly across the project (Tailwind
   class sorting via `prettier-plugin-tailwindcss` confirmed working).
-- `npm run lint` — zero errors, zero warnings.
-- `npm run build` — production build succeeds (`next build --turbopack`),
+- `npm run lint`: zero errors, zero warnings.
+- `npm run build`: production build succeeds (`next build --turbopack`),
   type-checks cleanly under `strict: true`, both routes prerender as
   static content (`○ (Static)`).
-- `npm run dev` — started locally; `GET /` and `GET /demo` both returned
+- `npm run dev`: started locally; `GET /` and `GET /demo` both returned
   `200`, with the expected placeholder copy present in the rendered HTML
   and no console/runtime errors in the dev server log.
 
@@ -252,7 +252,7 @@ it — it exists purely as a typed foundation for the next milestone.
 Per the milestone's explicit exclusions, none of the following were
 built, and none should be read as accidentally missing:
 
-- Any of the 11 frozen Guardian AI screens (docs/13) — Splash, Permission
+- Any of the 11 frozen Guardian AI screens (docs/13): Splash, Permission
   Explainer, permission grant simulations, Emergency Contact, Home's real
   status card, Scam Warning, Alert History, Settings.
 - Onboarding flow.
@@ -261,6 +261,6 @@ built, and none should be read as accidentally missing:
 - Any simulation logic (detection, notify, the Demo Mode narrative
   itself).
 - Guardian AI-specific component skinning (Button emphasis tiers, Status
-  Card states, Warning Action Stack, etc.) — the primitives installed in
+  Card states, Warning Action Stack, etc.), the primitives installed in
   §5 are generic shadcn defaults, not yet these.
 - A real Vercel deployment (account/project connection).

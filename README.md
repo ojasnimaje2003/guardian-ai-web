@@ -1,15 +1,15 @@
-# Guardian AI — Scam Call Protection, Prototyped for the Web
+# Guardian AI: Scam Call Protection, Prototyped for the Web
 
 **An interactive, high-fidelity web prototype of an Android product that
-protects independent seniors from real-time phone scams — built to be
+protects independent seniors from real-time phone scams, built to be
 demoed, not just described.**
 
 Guardian AI's actual product is an Android app that watches for one
 specific, dangerous pattern: a live phone call coaching someone to
 install a screen-sharing app, and interrupts it before money moves or a
 device is compromised. This repository is **not** that Android app. It's
-a Next.js recreation of its entire user experience — every screen,
-every decision, every state — plus a guided, end-to-end simulation of
+a Next.js recreation of its entire user experience: every screen,
+every decision, every state, plus a guided, end-to-end simulation of
 the moment the product exists for, so anyone can experience it from a
 browser with no Android device required.
 
@@ -40,7 +40,7 @@ browser with no Android device required.
 
 Scam calls that talk a victim into installing a remote-access app
 (AnyDesk, TeamViewer, and similar tools) are one of the most damaging,
-fastest-moving fraud patterns targeting independent, digitally-active
+fastest-moving fraud patterns targeting independent, digitally active
 seniors. The moment that matters is narrow and urgent: a live call, a
 screen-sharing app opening, and a window of maybe a few minutes before
 real harm happens. Generic security software doesn't watch for this
@@ -52,13 +52,13 @@ realizes what happened, the damage is usually done.
 Guardian AI's Android app is built around exactly one high-conviction
 signal: **an active phone call plus a known screen-share/remote-access
 app coming to the foreground.** No account linking, no financial data,
-no broad "AI fraud detection" claims — a narrow, deterministic,
+no broad "AI fraud detection" claims. Just a narrow, deterministic,
 on-device correlation that fires in seconds, warns in plain language,
 and offers one clear action: notify someone the user trusts. It was
 deliberately scoped down from a much larger, ten-feature financial-
 safety platform after investor and product review found that the
 broader platform was building trust infrastructure the product hadn't
-earned yet — this one moment was the single highest-leverage, most
+earned yet. This one moment was the single highest-leverage, most
 buildable piece of the whole vision.
 
 ## Product Vision
@@ -67,40 +67,41 @@ _"A trusted, autonomy-respecting second opinion standing between impulse
 or manipulation and irreversible loss."_ Guardian AI never acts on a
 user's behalf, never claims a capability it doesn't have, and never
 raises an alarm without naming the specific signal that triggered it.
-The long-term vision — cross-institution bank-account monitoring,
-server-side risk scoring, a full family "Trust Circle," enforceable
-payment holds — is real and documented, but deliberately deferred until
-this one moment proves itself. See [Future Roadmap](#future-roadmap).
+The long-term vision, including cross-institution bank-account
+monitoring, server-side risk scoring, a full family "Trust Circle," and
+enforceable payment holds, is real and documented, but deliberately
+deferred until this one moment proves itself. See [Future
+Roadmap](#future-roadmap).
 
 ---
 
 ## Key Features
 
 This repository implements the frozen MVP's entire UI/UX as a real,
-interactive product — not static mockups:
+interactive product, not static mockups:
 
-- **Full onboarding flow** — permission explainer, simulated Android
+- **Full onboarding flow**: permission explainer, simulated Android
   permission grants (with realistic decline/repair paths), emergency
   contact capture (with a simulated native contacts-picker), and a
-  completion screen — all backed by real client-side state that
+  completion screen, all backed by real client-side state that
   persists across reloads.
-- **Home dashboard** — a live-derived protection status ("Active" /
+- **Home dashboard**: a live-derived protection status ("Active" /
   "Off") that genuinely reflects the simulated permission state, with a
   one-tap repair path into the specific missing permission.
-- **Interactive Demo Mode** — the product's actual reason to exist,
-  made explorable without an Android device: a guided, scripted call
+- **Interactive Demo Mode**: the product's actual reason to exist,
+  made explorable without an Android device. A guided, scripted call
   simulation ends the instant a simulated screen-sharing app "opens,"
   triggering a pixel-for-pixel implementation of the real product's
-  full-screen Scam Warning — instant appearance, no dismiss-by-accident,
-  automatic screen-reader announcement, three weighted actions (End the
-  call / Notify a contact / Mark as fine).
-- **Alert History** — every completed warning is persisted and shown
+  full-screen Scam Warning: instant appearance, no dismiss-by-accident,
+  automatic screen-reader announcement, and three weighted actions (End
+  the call / Notify a contact / Mark as fine).
+- **Alert History**: every completed warning is persisted and shown
   chronologically, with the exact original explanation preserved
   verbatim on expand.
-- **Settings** — live permission status with repair links, emergency
+- **Settings**: live permission status with repair links, emergency
   contact edit/remove (with a confirmation dialog for removal), and a
   plain-language privacy disclosure.
-- **A 20+ component design system** — every visual element (typography,
+- **A 20+ component design system**: every visual element (typography,
   buttons, cards, status pills, dialogs, toasts, skeleton loading
   states) traced directly to the frozen visual specification, not
   improvised.
@@ -113,16 +114,16 @@ The fastest way to understand the product is Home → **Try Demo Mode** →
 1. A simulated phone call begins, with scripted scammer dialogue
    appearing progressively (a "Skip ahead" link is always available).
 2. The instant the simulated call reaches the moment a screen-sharing
-   app would open, the full-screen **Scam Warning** appears — no
+   app would open, the full-screen **Scam Warning** appears with no
    transition, exactly as the real product is specified to behave,
    because a slow entrance would be wrong for a time-critical interrupt.
-3. Choose **End the call**, **Notify [contact]**, or **This is fine** —
-   each produces a real, persisted Alert History entry you can see
+3. Choose **End the call**, **Notify [contact]**, or **This is fine**.
+   Each produces a real, persisted Alert History entry you can see
    afterward on Home and in Alert History.
 
 ## Screenshots
 
-_(placeholder — screenshots to be added)_
+_(placeholder: screenshots to be added)_
 
 | Home                 | Scam Warning         | Onboarding           |
 | -------------------- | -------------------- | -------------------- |
@@ -133,7 +134,7 @@ _(placeholder — screenshots to be added)_
 ## Architecture Overview
 
 - **Next.js App Router**, entirely client-rendered screens (`"use
-client"`) — this is a stateful, interactive product experience, not a
+client"`). This is a stateful, interactive product experience, not a
   content site.
 - **No backend, no database, no API routes.** A single React Context
   (`AppStateProvider`) backed by `localStorage` stands in for the real
@@ -141,12 +142,12 @@ client"`) — this is a stateful, interactive product experience, not a
   simulated permission grants, the emergency contact, and alert history
   across reloads.
 - **Every Android-only capability is simulated, not real.** There is no
-  way for a browser to detect a live phone call or a foreground app —
-  every such moment (permission grants, the scam call itself, the
-  notify action) is an honest, clearly-scoped frontend simulation, never
+  way for a browser to detect a live phone call or a foreground app.
+  Every such moment (permission grants, the scam call itself, the
+  notify action) is an honest, clearly scoped frontend simulation, never
   presented as more than it is.
 - **A dedicated design-system layer** (`src/components/design-system/`)
-  sits between generic UI primitives and the actual screens — every
+  sits between generic UI primitives and the actual screens: every
   component in it is traced to a specific section of the frozen visual
   specification; screens compose these rather than hand-styling
   elements inline.
@@ -158,16 +159,16 @@ client"`) — this is a stateful, interactive product experience, not a
 
 ## Tech Stack
 
-| Layer                | Choice                                                                                |
-| -------------------- | ------------------------------------------------------------------------------------- |
-| Framework            | [Next.js 15](https://nextjs.org) (App Router)                                         |
-| Language             | TypeScript (`strict` mode)                                                            |
-| Styling              | [Tailwind CSS v4](https://tailwindcss.com) — CSS-first theme, no `tailwind.config.js` |
-| Component primitives | [shadcn/ui](https://ui.shadcn.com) on [Base UI](https://base-ui.com)                  |
-| Icons                | [Lucide](https://lucide.dev)                                                          |
-| State                | React Context + `localStorage` (no external state library)                            |
-| Formatting / linting | Prettier (+ `prettier-plugin-tailwindcss`), ESLint (`next/core-web-vitals`)           |
-| Deployment           | [Vercel](https://vercel.com)                                                          |
+| Layer                | Choice                                                                               |
+| -------------------- | ------------------------------------------------------------------------------------ |
+| Framework            | [Next.js 15](https://nextjs.org) (App Router)                                        |
+| Language             | TypeScript (`strict` mode)                                                           |
+| Styling              | [Tailwind CSS v4](https://tailwindcss.com): CSS-first theme, no `tailwind.config.js` |
+| Component primitives | [shadcn/ui](https://ui.shadcn.com) on [Base UI](https://base-ui.com)                 |
+| Icons                | [Lucide](https://lucide.dev)                                                         |
+| State                | React Context + `localStorage` (no external state library)                           |
+| Formatting / linting | Prettier (+ `prettier-plugin-tailwindcss`), ESLint (`next/core-web-vitals`)          |
+| Deployment           | [Vercel](https://vercel.com)                                                         |
 
 ## Folder Structure
 
@@ -214,7 +215,7 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000). The app starts at
 Splash and will resume onboarding or land on Home depending on what's
-already in `localStorage` from a previous visit — clear site data (or
+already in `localStorage` from a previous visit. Clear site data (or
 use a private window) to see the true first-run experience again.
 
 Other scripts:
@@ -224,13 +225,13 @@ Other scripts:
 | `npm run build`        | Production build           |
 | `npm run start`        | Serve the production build |
 | `npm run lint`         | ESLint                     |
-| `npm run format`       | Prettier — write           |
-| `npm run format:check` | Prettier — check only      |
+| `npm run format`       | Prettier: write            |
+| `npm run format:check` | Prettier: check only       |
 
 ## Deployment
 
 Deploys to [Vercel](https://vercel.com) with zero configuration and zero
-environment variables — Vercel auto-detects the Next.js App Router
+environment variables. Vercel auto-detects the Next.js App Router
 project, and `npm run build` is the standard build command. See
 `docs/reports/release-candidate-1.md` §9 for the full step-by-step
 deployment guide.
@@ -244,15 +245,15 @@ not a retrofit:
 - Every interactive element has a real accessible name and a visible
   focus ring; icon-only controls are labeled.
 - Keyboard focus moves to new content on every navigation, and screen
-  readers are told what screen they've landed on — a gap most
+  readers are told what screen they've landed on: a gap most
   single-page apps leave open, since client-side routing doesn't trigger
   either behavior on its own.
 - The Scam Warning screen announces itself automatically and assertively
   the instant it appears, without requiring the user to navigate to it
-  first — the one place in the app where read-aloud isn't opt-in.
+  first: the one place in the app where read-aloud isn't opt-in.
 - Every color pairing in the design system was checked against computed
   WCAG contrast ratios, not eyeballed. One finding from that audit is
-  open and documented rather than silently patched: `docs/reports/
+  open and documented rather than silently patched. See `docs/reports/
 release-candidate-1.md` §3 for the specifics and the recommended
   resolution paths.
 
@@ -264,18 +265,18 @@ Ported directly from the frozen visual specification, not reinterpreted:
   deliberately muted and quiet; the Scam Warning screen is the only one
   allowed to look and feel different, and it earns that contrast
   precisely because nothing else competes for it.
-- **No saturated alarm-red, anywhere** — even at the product's single
+- **No saturated alarm-red, anywhere**, even at the product's single
   highest-stakes moment. A product whose job is preventing panic-driven
   mistakes shouldn't itself be a source of visual panic.
 - **Every warning names its specific reason.** Never a bare "risk
-  detected" — always "AnyDesk opened during your call."
+  detected," always "AnyDesk opened during your call."
 - **Friction proportional to risk.** A false-positive dismissal is one
   tap, no confirmation; removing an emergency contact is one tap plus a
   confirmation dialog; nothing in the product traps a user into a state
   they didn't choose.
 - **Never claim more than the product delivers.** The onboarding, the
   About & Privacy copy, and this README all say plainly that this
-  prototype simulates detection — it does not perform it.
+  prototype simulates detection. It does not perform it.
 
 ## Future Roadmap
 
@@ -283,9 +284,9 @@ Ported directly from the frozen visual specification, not reinterpreted:
 scope for this repository): Account Aggregator bank-account linking,
 server-side transaction risk scoring, a second detection pattern
 (fake-refund/collect-request calls), 2–3 emergency contacts, a full
-multi-role family Trust Circle, a Fraud Timeline, and — if a sponsor-bank
-partnership is ever closed — Guardian Pay's enforceable transaction
-holds.
+multi-role family Trust Circle, a Fraud Timeline, and Guardian Pay's
+enforceable transaction holds if a sponsor-bank partnership is ever
+closed.
 
 **For this web prototype specifically:** a richer guided-demo narrative
 (multiple scripted scenarios sharing the same underlying detection
@@ -296,4 +297,4 @@ cover).
 
 ## License
 
-MIT — see [`LICENSE`](./LICENSE).
+MIT: see [`LICENSE`](./LICENSE).

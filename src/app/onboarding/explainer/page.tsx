@@ -14,7 +14,7 @@ import { BottomActionBar } from "@/components/design-system/bottom-action-bar";
 import { cn } from "@/lib/utils";
 
 /**
- * Permission Explainer — docs/13 Screen 2. Explains both permissions
+ * Permission Explainer: docs/13 Screen 2. Explains both permissions
  * before requesting either, since Accessibility Service specifically
  * carries enough real-world stigma that an unexplained request risks
  * decline. "Not now" leads to a truthfully degraded app (Home's
@@ -31,7 +31,7 @@ export default function PermissionExplainerPage() {
 
   const notNow = () => {
     // Reduced-function path: onboarding is considered "done" so the
-    // visitor can reach Home, but both permissions stay ungranted —
+    // visitor can reach Home, but both permissions stay ungranted.
     // Home's "Protection is off" state reflects this honestly.
     setOnboardingStep("done");
     router.push("/home");
@@ -46,12 +46,12 @@ export default function PermissionExplainerPage() {
         <ExplainerCard
           icon={<Phone className="size-5" aria-hidden />}
           title="Know when you're on a call"
-          body="We check whether a call is active — never who you're calling, and we never listen in."
+          body="We check whether a call is active, never who you're calling, and we never listen in."
         />
         <ExplainerCard
           icon={<ScreenShare className="size-5" aria-hidden />}
           title="Notice if a screen-sharing app opens during a call"
-          body="This is the one signal scammers rely on — asking you to install an app like AnyDesk or TeamViewer while you're on the phone with them."
+          body="This is the one signal scammers rely on: asking you to install an app like AnyDesk or TeamViewer while you're on the phone with them."
         />
       </div>
 

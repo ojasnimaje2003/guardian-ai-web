@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 /**
- * StatusPill — docs/15 Task 5 component naming convention `Badge/
+ * StatusPill: docs/15 Task 5 component naming convention `Badge/
  * StatusPill`; described in Task 3 Screen 10 (Settings): "a small status
  * chip (custom, pill-shaped, `primaryContainer` 'Granted' or
  * `protectionOffContainer` 'Not granted') trailing each Permissions row."
@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
  * `status="unknown"` extends the documented two states with the neutral,
  * data-unavailable-equivalent tone already established for Home's rare
  * "can't confirm status" state (docs/15 Task 2 `color.data-unavailable`
- * intent) — used consistently, not invented ad hoc, since `docs/14` §6
+ * intent), used consistently, not invented ad hoc, since `docs/14` §6
  * models permission state as a 3-value enum, not a boolean.
  */
 const statusPillVariants = cva(

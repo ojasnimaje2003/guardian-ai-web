@@ -25,15 +25,15 @@ import { CardSkeleton } from "@/components/design-system/loading";
 import { FadeThrough } from "@/components/design-system/fade-through";
 
 /**
- * Home — docs/13 Screen 7, the app's resting state. "Must communicate
+ * Home: docs/13 Screen 7, the app's resting state. "Must communicate
  * protection status truthfully at a glance, including when protection
  * is *not* fully active." The Status Card is a custom composition per
- * docs/15 Task 2 ("MD3 has no dedicated 'status hero' component") —
+ * docs/15 Task 2 ("MD3 has no dedicated 'status hero' component"),
  * built inline here rather than as a shared component, since Home is
  * its only documented use.
  *
  * Protection status is derived from the simulated permission state on
- * every render (no caching) — the same "never trust a stale value"
+ * every render (no caching), the same "never trust a stale value"
  * rule docs/14 §6 specifies for the real Android permission checks.
  *
  * Recent Activity shows the last 1–2 real entries (docs/13 Screen 7)
@@ -84,7 +84,7 @@ export default function HomePage() {
 
       <div className="gap-xl py-lg flex flex-col">
         {/* Guards against a flash of "Protection is off" before the
-            real, persisted permission state loads from localStorage —
+            real, persisted permission state loads from localStorage:
             the default state is always "off" until hydration resolves,
             which would otherwise flicker for any returning user whose
             protection is actually active. */}
@@ -101,8 +101,8 @@ export default function HomePage() {
               <div className="gap-md bg-protection-off-container p-lg text-protection-off flex flex-col items-start rounded-(--radius-card)">
                 <ShieldAlert className="size-8" aria-hidden />
                 <Heading as="h2">
-                  Protection is off — Guardian AI can&apos;t watch for scam
-                  calls right now.
+                  Protection is off. Guardian AI can&apos;t watch for scam calls
+                  right now.
                 </Heading>
                 <Button variant="filled-tonal" onClick={fixThis}>
                   Fix this
@@ -134,7 +134,7 @@ export default function HomePage() {
                     entry.actionTaken,
                     contactName
                   )}
-                  expandedContent={`${entry.detectedAppName} opened during your call — scammers often ask for this to access your phone or accounts.`}
+                  expandedContent={`${entry.detectedAppName} opened during your call. Scammers often ask for this to access your phone or accounts.`}
                 />
               ))}
             </FadeThrough>

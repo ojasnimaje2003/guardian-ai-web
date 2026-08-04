@@ -8,20 +8,20 @@ fixes, and thoughtful pull requests.
 
 This repository implements a **frozen product specification**. The
 product, UX, and visual design decisions live in `docs/12`–`15` and are
-treated as the source of truth throughout the codebase — most components
+treated as the source of truth throughout the codebase. Most components
 and screens cite the exact spec section they implement in a code
 comment. Please read the relevant doc section before changing any
 screen's behavior, copy, or visual treatment, and:
 
 - **Product/UX changes** (anything that adds, removes, or reshapes a
   screen or flow relative to the frozen spec) should be raised as an
-  issue for discussion before a PR — the spec isn't casually amended.
+  issue for discussion before a PR. The spec isn't casually amended.
 - **Bug fixes, accessibility fixes, dependency updates, and internal
   refactors** that don't change product behavior are welcome directly as
   PRs.
 - If you're using Claude Code or another AI coding assistant against
   this repo, `CLAUDE.md` is the operating manual it should already be
-  following — it explains the doc-traceability convention above in
+  following. It explains the doc-traceability convention above in
   detail.
 
 ## Development Setup
@@ -48,16 +48,16 @@ formatting issues automatically.
 
 ## Code Style
 
-- TypeScript `strict` mode — no `any`, no unnecessary type assertions.
+- TypeScript `strict` mode: no `any`, no unnecessary type assertions.
 - Prettier + ESLint (`next/core-web-vitals`) govern formatting and lint
   rules; don't hand-format against them.
 - Reuse an existing component from `src/components/design-system/`
-  before adding a new one — check that directory's own `README.md` for
+  before adding a new one. Check that directory's own `README.md` for
   the current catalog. New design-system components should cite the
   specific `docs/15` section they implement, the same way every existing
   one does.
 - Keep the design tokens (`src/app/globals.css`) as the single source
-  for color, spacing, typography, and radius — avoid raw Tailwind values
+  for color, spacing, typography, and radius. Avoid raw Tailwind values
   (`text-lg`, `p-6`, `bg-red-500`, …) that bypass the token system.
 
 ## Commit Messages
@@ -79,7 +79,7 @@ welcome via GitHub Issues. Please include:
 ## Security
 
 This app has no backend, no database, and stores nothing beyond
-`localStorage` on the visitor's own device — see the README's
+`localStorage` on the visitor's own device. See the README's
 [Architecture Overview](./README.md#architecture-overview). If you
 believe you've found a genuine security issue anyway, please open an
 issue describing it; there is no separate private disclosure channel for

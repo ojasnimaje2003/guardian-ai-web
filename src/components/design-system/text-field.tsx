@@ -3,20 +3,20 @@ import { useId } from "react";
 import { cn } from "@/lib/utils";
 
 /**
- * TextField — docs/15 Task 2 "Components → Text fields": "MD3 Outlined
+ * TextField: docs/15 Task 2 "Components → Text fields": "MD3 Outlined
  * Text Field (not Filled) throughout, chosen for better contrast/
  * legibility across the app's warm off-white background."
  *
  * Docs/13 Screen 5/11 accessibility requirement: "Both fields have
  * explicit labels (not placeholder-only, which screen readers can
- * announce inconsistently)" — the `label` prop always renders a visible,
+ * announce inconsistently)." The `label` prop always renders a visible,
  * persistent `<label>`, never a placeholder standing in for one.
  * `error` renders as an inline field-level message only ("This doesn't
- * look like a valid phone number") — never a top-of-screen generic
+ * look like a valid phone number"), never a top-of-screen generic
  * banner, per the same spec.
  *
  * Corner radius is not specified for text fields in docs/15 (only
- * buttons/cards/dialogs have documented radii) — this uses the same
+ * buttons/cards/dialogs have documented radii). This uses the same
  * restrained, non-pill radius scale as the rest of the system as a
  * reasonable default, not a frozen value.
  */

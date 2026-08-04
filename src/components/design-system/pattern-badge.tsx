@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 /**
- * PatternBadge — docs/15 Task 5 component naming convention `Badge/
+ * PatternBadge: docs/15 Task 5 component naming convention `Badge/
  * PatternLabel`: "the one custom, non-MD3-standard component, named
  * distinctly so it's never mistaken for a standard MD3 Badge." Task 3
  * Screen 8 (Scam Warning): a pill-shaped badge in `concernContainer`
@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
  * detected").
  *
  * This is the one component in the design system whose only documented
- * use is the live-threat moment — do not reuse it for generic warnings
+ * use is the live-threat moment. Do not reuse it for generic warnings
  * or technical errors (see Alert's explicit non-use of `concern` for
  * that reason, alert.tsx). Reserved for Scam Warning.
  */

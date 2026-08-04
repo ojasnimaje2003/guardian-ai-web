@@ -6,14 +6,14 @@ import { cn } from "@/lib/utils";
 import { Button } from "./button";
 
 /**
- * ConfirmDialog — docs/15 Task 2 "Components → Dialogs": "MD3 Basic
+ * ConfirmDialog: docs/15 Task 2 "Components → Dialogs": "MD3 Basic
  * Dialog, used exactly once: the 'Remove emergency contact?'
- * confirmation ... Two actions (Cancel — Text button; Remove — Filled
+ * confirmation ... Two actions (Cancel: Text button; Remove: Filled
  * button in `concern` coloring, since this is a meaningful, if
  * reversible, action worth a moment's pause)."
  *
  * 16dp radius (`--radius-dialog`) and Level 3 elevation (a visible
- * shadow — "the one place a visible shadow is appropriate, since a
+ * shadow: "the one place a visible shadow is appropriate, since a
  * dialog needs to read as clearly above the page," docs/15 Task 2
  * Elevation) are applied unconditionally. `destructive` maps to the
  * documented `concern`-toned confirm button; omit it for a dialog that

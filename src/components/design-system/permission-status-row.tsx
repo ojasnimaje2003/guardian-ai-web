@@ -2,11 +2,11 @@ import { StatusPill } from "./status-pill";
 import { Button } from "./button";
 
 /**
- * PermissionStatusRow — docs/15 Component Inventory: "Label +
+ * PermissionStatusRow: docs/15 Component Inventory: "Label +
  * granted/not-granted indicator + conditional re-grant action; reused
  * identically for both permission types so the pattern is learned
  * once." Docs/13 Screen 10 (Settings): "A Permissions row showing 'Not
- * granted' is never just informational — it always has a direct,
+ * granted' is never just informational: it always has a direct,
  * one-tap path back into the relevant grant flow."
  *
  * `description` carries the copywriting rule from docs/13 §13: the

@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 import { SITE_URL } from "@/lib/site";
 
-/** Every real route this app serves — kept in sync by hand with `src/app/`'s actual route tree. */
+/** Every real route this app serves, kept in sync by hand with `src/app/`'s actual route tree. */
 const ROUTES = [
   "/",
   "/home",

@@ -18,10 +18,10 @@ import { ConfirmDialog } from "@/components/design-system/confirm-dialog";
 const PHONE_PATTERN = /^[6-9]\d{9}$/;
 
 /**
- * Set Emergency Contact — docs/13 Screen 5. "Choose from contacts" opens
+ * Set Emergency Contact: docs/13 Screen 5. "Choose from contacts" opens
  * the native Android contact picker on a real device; a browser has no
  * equivalent, so it's simulated here by filling the form with a sample
- * contact — an honest stand-in for the picker result, not a real
+ * contact, an honest stand-in for the picker result, not a real
  * device-contacts integration.
  */
 export default function SetEmergencyContactPage() {
@@ -61,7 +61,7 @@ export default function SetEmergencyContactPage() {
   const isBlank = name.trim().length === 0 && phone.length === 0;
   // docs/13 Screen 5/11 edge case: "Editing to remove the contact
   // entirely (leaving the field blank and saving) is allowed and shows
-  // a distinct confirmation" — blank fields are a valid Save target in
+  // a distinct confirmation": blank fields are a valid Save target in
   // edit mode specifically, not a validation failure.
   const canSave =
     isEditMode && isBlank
@@ -112,7 +112,7 @@ export default function SetEmergencyContactPage() {
         {/* h1 in first-time onboarding (no TopAppBar present, so this is
             the page's only top-level heading); h2 in edit mode, since
             TopAppBar above already renders the page's h1 ("Emergency
-            Contact") — never both, to avoid two competing h1s. */}
+            Contact"), never both, to avoid two competing h1s. */}
         <Heading as={isEditMode ? "h2" : "h1"}>
           Who should we notify if something looks like a scam?
         </Heading>
@@ -145,8 +145,8 @@ export default function SetEmergencyContactPage() {
         </Button>
 
         <Caption>
-          We&apos;ll send them a short message with your name and the time —
-          nothing about your accounts or money.
+          We&apos;ll send them a short message with your name and the time.
+          Nothing about your accounts or money.
         </Caption>
       </div>
 

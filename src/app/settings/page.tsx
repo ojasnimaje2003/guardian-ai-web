@@ -14,11 +14,11 @@ import { Toast } from "@/components/design-system/toast";
 import { ListRowSkeleton } from "@/components/design-system/loading";
 
 /**
- * Settings — docs/13 Screen 10. Emergency Contact and Permissions
+ * Settings: docs/13 Screen 10. Emergency Contact and Permissions
  * sections are real, reflecting the same simulated state Home and
  * onboarding read/write. Accessibility (font size/contrast/read-aloud)
  * is a docs/12 Should-Have, not Must-Have, and isn't built this
- * milestone — not in scope per the current priority list.
+ * milestone, not in scope per the current priority list.
  */
 export default function SettingsPage() {
   const router = useRouter();
@@ -75,7 +75,7 @@ export default function SettingsPage() {
         <div className="gap-sm flex flex-col">
           <SectionHeader>About & Privacy</SectionHeader>
           <Caption>
-            Guardian AI currently watches for one pattern — a screen-sharing app
+            Guardian AI currently watches for one pattern: a screen-sharing app
             opening during a call. It cannot see your screen or hear your calls.
           </Caption>
         </div>

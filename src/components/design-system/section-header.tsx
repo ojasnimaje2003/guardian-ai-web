@@ -1,13 +1,13 @@
 import { cn } from "@/lib/utils";
 
 /**
- * SectionHeader — docs/13 Screen 10 (Settings) accessibility rule:
+ * SectionHeader: docs/13 Screen 10 (Settings) accessibility rule:
  * "Section headers ('Emergency Contact,' 'Permissions,' 'Accessibility,'
  * 'About & Privacy') are announced as headings, not plain list rows, so
  * screen-reader users can jump between sections." Also used for Home's
  * "Recent Activity" label (docs/15 Task 3 Screen 7).
  *
- * Renders `type.heading` (docs/15 Task 2) as a real heading element —
+ * Renders `type.heading` (docs/15 Task 2) as a real heading element.
  * `level` lets the consuming screen fit it into its own heading
  * hierarchy correctly rather than always assuming one level.
  */

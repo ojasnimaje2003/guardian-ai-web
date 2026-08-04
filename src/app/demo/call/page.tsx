@@ -22,10 +22,10 @@ function formatElapsed(seconds: number) {
 }
 
 /**
- * Demo Mode — Guided Simulation. Not a documented screen on its own;
+ * Demo Mode: Guided Simulation. Not a documented screen on its own;
  * it's the presentation-layer bridge the approved story-first strategy
- * calls for, ending the instant the simulated screen-share app "opens"
- * — the same moment `docs/13` Screen 8 fires from in the real product.
+ * calls for, ending the instant the simulated screen-share app "opens,"
+ * the same moment `docs/13` Screen 8 fires from in the real product.
  * A stylized in-app call screen, clearly not a recreation of Android's
  * own call UI (`Caption` below says so explicitly), since faking real
  * system chrome would misrepresent what this prototype is.
@@ -58,7 +58,7 @@ export default function DemoCallPage() {
   return (
     <ScreenContainer variant="full-bleed">
       <div className="gap-xl px-md py-2xl flex flex-1 flex-col items-center">
-        <Caption>Demo Mode — simulated call, not a real call</Caption>
+        <Caption>Demo Mode: simulated call, not a real call</Caption>
 
         <div className="gap-sm flex flex-col items-center">
           <div className="bg-secondary flex size-20 animate-pulse items-center justify-center rounded-full">

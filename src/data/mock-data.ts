@@ -1,9 +1,9 @@
 import type { EmergencyContact } from "./types";
 
 /**
- * docs/14 §10 — KnownScreenShareApps.PACKAGES, the bundled list of
+ * docs/14 §10: KnownScreenShareApps.PACKAGES, the bundled list of
  * remote-access tools the detector correlates against a live call. Ported
- * here as static reference data — the demo simulation (`/demo/call`,
+ * here as static reference data: the demo simulation (`/demo/call`,
  * `/demo/warning`) always uses index 0 (AnyDesk); the remaining entries
  * represent the same full known-app list docs/14 §10 describes and are
  * kept for that fidelity, not because more of the demo indexes into them.
@@ -27,11 +27,11 @@ export const mockEmergencyContact: EmergencyContact = {
 /**
  * Scripted scammer dialogue for the Demo Mode guided simulation
  * (docs/12 §"Week 2" sprint task references "India-targeted scam
- * patterns" as the basis for the known-app list this script ends with
- * — the pattern itself, a fake bank/fraud-team caller talking a victim
+ * patterns" as the basis for the known-app list this script ends with;
+ * the pattern itself, a fake bank/fraud-team caller talking a victim
  * into installing a remote-access app mid-call, is the same one
  * `docs/13` Screen 2's Accessibility explanation card describes).
- * Presentation-layer content only — it does not change what the
+ * Presentation-layer content only: it does not change what the
  * product detects (still the single Screen-Share Pattern) or add a
  * new detection mechanism.
  */

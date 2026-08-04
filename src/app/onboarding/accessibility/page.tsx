@@ -12,8 +12,8 @@ import { Button } from "@/components/design-system/button";
 import { Spinner } from "@/components/design-system/loading";
 
 /**
- * Accessibility Service Permission — docs/13 Screen 4. On a real device
- * this permission cannot be granted in-app at all — Android requires a
+ * Accessibility Service Permission: docs/13 Screen 4. On a real device
+ * this permission cannot be granted in-app at all: Android requires a
  * round trip to System Settings and back. There is no such settings app
  * to hand off to in a browser, so "Open Settings" simulates the entire
  * round trip (the wait, the automatic re-check on "return") rather than
@@ -70,14 +70,14 @@ export default function AccessibilityPermissionPage() {
       <div className="gap-lg flex flex-col">
         <StepIndicator current={3} total={5} />
         <Heading as="h1">
-          One more step — this one happens in your phone&apos;s Settings, not
+          One more step: this one happens in your phone&apos;s Settings, not
           here.
         </Heading>
 
         <ol className="gap-sm text-body text-foreground flex flex-col">
           <li>1. Find Guardian AI in the list.</li>
           <li>2. Tap it, then tap the toggle.</li>
-          <li>3. Come back here — we&apos;ll check automatically.</li>
+          <li>3. Come back here. We&apos;ll check automatically.</li>
         </ol>
 
         {phase === "checking" && (
@@ -90,7 +90,7 @@ export default function AccessibilityPermissionPage() {
         {phase === "granted" && (
           <div className="gap-sm text-primary animate-in fade-in ease-standard flex items-center duration-200">
             <Check className="size-5" aria-hidden />
-            <Body>Got it — Guardian AI can now watch for this pattern.</Body>
+            <Body>Got it. Guardian AI can now watch for this pattern.</Body>
           </div>
         )}
 

@@ -5,13 +5,13 @@ import { useEffect } from "react";
 import { cn } from "@/lib/utils";
 
 /**
- * Toast — docs/15 Task 4 "Snackbar Behavior": "One use in the entire
+ * Toast: docs/15 Task 4 "Snackbar Behavior": "One use in the entire
  * app: the 'Emergency contact updated' confirmation ... MD3 standard
- * Snackbar: single line, no action button (nothing to undo — the
+ * Snackbar: single line, no action button (nothing to undo, since the
  * frozen UX spec doesn't specify an undo path), auto-dismiss after 4
  * seconds, 100ms slide-up entrance / 75ms fade-out exit."
  *
- * Controlled component — the caller owns `open` state; this only owns
+ * Controlled component: the caller owns `open` state; this only owns
  * the auto-dismiss timer and the entrance/exit motion. No action
  * button prop exists on purpose, matching the one documented use case.
  */

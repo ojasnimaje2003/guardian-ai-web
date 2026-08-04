@@ -3,16 +3,16 @@ import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 /**
- * ScreenContainer — the three layout shapes docs/13/15 actually use
+ * ScreenContainer: the three layout shapes docs/13/15 actually use
  * across the 11 frozen screens, not a generic page wrapper:
  *
- * - `standard` — a top app bar (composed separately, see TopAppBar) plus
+ * - `standard`: a top app bar (composed separately, see TopAppBar) plus
  *   a width-capped content column. History, Settings, onboarding steps.
- * - `full-bleed` — edge-to-edge, no chrome, no max-width. Docs/15 Task 3
+ * - `full-bleed`: edge-to-edge, no chrome, no max-width. Docs/15 Task 3
  *   Screen 8: "Full-bleed, no app bar, no back button ... this screen
  *   owns the entire display including behind the system status bar."
  *   Scam Warning only.
- * - `centered` — vertically centered, single decision, no scroll.
+ * - `centered`: vertically centered, single decision, no scroll.
  *   Splash, Onboarding Complete.
  *
  * Content width is capped at `--width-content` (360dp, docs/15 Task 2)
@@ -20,12 +20,12 @@ import { cn } from "@/lib/utils";
  *
  * Responsive framing (docs/12–15 are phone-only specs and don't address
  * desktop/tablet at all): on `sm:` and up, every variant renders inside
- * a fixed-height, self-scrolling "phone canvas" — centered, capped
- * width, subtle shadow — so the product still reads as a phone app on
+ * a fixed-height, self-scrolling "phone canvas": centered, capped
+ * width, subtle shadow, so the product still reads as a phone app on
  * a wide viewport instead of a narrow column adrift in empty space.
  * The canvas becomes its own scroll container at that breakpoint so
  * `BottomActionBar`'s `sticky bottom-0` pins to the canvas's own edge,
- * not the browser window's. Below `sm:`, this is a no-op — the real
+ * not the browser window's. Below `sm:`, this is a no-op. The real
  * page just scrolls naturally, as it always has.
  */
 const CANVAS =

@@ -1,8 +1,8 @@
 # Milestone 2 Implementation Report
-### Guardian AI Web Prototype — Design System
+### Guardian AI Web Prototype: Design System
 
 *Implements only what `docs/12`–`15` specify. No product, UX, or
-architecture decision was revisited in this milestone — see §5 for the
+architecture decision was revisited in this milestone. See §5 for the
 one place a milestone objective (a component name) required an
 interpretation call against the frozen spec, flagged rather than
 silently decided.*
@@ -17,7 +17,7 @@ buttons, cards, inputs, alerts, status badges, permission rows, screen
 layout primitives, empty/loading states, section headers, a top app bar,
 a bottom action bar, progress indicators, an expandable
 chronological-history component, list/settings rows, a confirm dialog, a
-toast, and motion primitives — every one styled and behaviorally
+toast, and motion primitives. Every one is styled and behaviorally
 specified directly against `docs/15`, with JSDoc on each component citing
 its source section. **No screen, onboarding flow, dashboard, or
 simulation logic was built**, per the milestone's explicit scope.
@@ -70,19 +70,19 @@ which this report doesn't duplicate.
   (`Dialog`/`Input` internals). Reasoning: `ui/` is a generic, vendored,
   upgradeable base; `docs/15`'s actual 3-tier Button system,
   custom-toned Alert, StatusPill, etc. have no equivalent in shadcn's
-  default taxonomy and needed bespoke, precisely-specified components —
-  bolting doc-specific variants onto vendored files would make future
+  default taxonomy and needed bespoke, precisely-specified components.
+  Bolting doc-specific variants onto vendored files would make future
   shadcn updates (`shadcn add --overwrite`) destructive.
 - **`concern` coloring is deliberately fenced off.** Only `Button
   (tone="concern")`, `PatternBadge`, and `ConfirmDialog (destructive)`
-  can render it. `Alert` — the component every permission/technical-error
-  state will use — cannot, on purpose: `docs/15` is explicit that a live
+  can render it. `Alert`, the component every permission/technical-error
+  state will use, cannot, on purpose: `docs/15` is explicit that a live
   scam-threat warning and a broken permission check "must always [stay]
   visually distinct." This is enforced by the component API (no
   `tone="concern"` option exists on `Alert`), not just a comment.
 - **No bottom sheet component was built**, despite being a real MD3
   component. `docs/15` explicitly reserves it for V2 ("Not used anywhere
-  in this MVP's 11 frozen screens") — building it now would be exactly
+  in this MVP's 11 frozen screens"). Building it now would be exactly
   the placeholder architecture this project's engineering principles
   warn against.
 - **`StepIndicator` is text-only, no progress bar**, matching the doc's
@@ -97,7 +97,7 @@ which this report doesn't duplicate.
 
 ---
 
-## 4. Motion Primitives — Implementation Note
+## 4. Motion Primitives: Implementation Note
 
 Tailwind v4's `--ease-*` theme namespace is confirmed to generate named
 easing utilities (verified against `tailwindcss/theme.css`'s own
@@ -106,8 +106,8 @@ there directly. Tailwind's `--duration-*` namespace behavior for *named*
 (non-numeric) duration utilities isn't similarly documented/verified in
 this codebase, so rather than gamble on unverified behavior, durations
 use Tailwind's built-in numeric/arbitrary `duration-*` utilities directly
-in component code (`duration-200`, `duration-[50ms]`, `duration-[400ms]`)
-— `src/components/design-system/motion.ts` is the documented mapping
+in component code (`duration-200`, `duration-[50ms]`, `duration-[400ms]`).
+`src/components/design-system/motion.ts` is the documented mapping
 from each MD3 duration token to the exact utility class used, so
 components stay consistent without every author re-deriving the mapping.
 `CheckmarkDraw`'s one true keyframe animation (stroke-draw) was added to
@@ -120,13 +120,13 @@ components stay consistent without every author re-deriving the mapping.
 The milestone's objective list includes "Timeline component," which has
 no component by that name in `docs/15`. `docs/12` explicitly defers a
 **Fraud Timeline** feature to V2/V3 (cross-institution fraud data,
-outside this MVP's scope entirely) — building something literally named
+outside this MVP's scope entirely). Building something literally named
 "Timeline" risked resembling that deferred feature.
 
 **Decision:** interpreted "Timeline component" as the frozen spec's own
 `HistoryListItem` (Component Inventory: "History List Item (expandable)
 ... Collapsed: date, pattern label, action taken. Expanded: full
-original explanation text, verbatim") — a chronological, expandable
+original explanation text, verbatim"), a chronological, expandable
 alert record, which is the closest and only legitimate match in the
 frozen docs. `history-list-item.tsx`'s JSDoc states this mapping and the
 non-relation to Fraud Timeline explicitly, so the reasoning is visible in
@@ -134,30 +134,30 @@ code, not just this report. No risk scores, cross-institution data, or
 anything beyond the one detection pattern was introduced.
 
 This is the only place in this milestone where a requested item didn't
-map cleanly onto an existing doc section — every other component traces
+map cleanly onto an existing doc section. Every other component traces
 to a named `docs/15` section or Component Inventory entry directly.
 
 ---
 
 ## 6. Verification Performed
 
-- **`npm run format` / `format:check`** — clean across all 23 new
+- **`npm run format` / `format:check`**: clean across all 23 new
   component files (plus the barrel export and README).
-- **`npm run lint`** — zero errors, zero warnings.
-- **`npm run build`** — production build succeeds; Next.js's full-project
+- **`npm run lint`**: zero errors, zero warnings.
+- **`npm run build`**: production build succeeds; Next.js's full-project
   type-check (not just reachable files) passes under `strict: true`
   across every new file.
 - **Runtime smoke test:** a temporary route (`/ds-preview-temp`,
-  `"use client"`) rendered one instance of every component — including
+  `"use client"`) rendered one instance of every component, including
   the three stateful/interactive ones (`TextField` with live validation,
   `ConfirmDialog` open/close, `Toast` open/auto-dismiss/close,
-  `HistoryListItem` expand/collapse) — against the running dev server.
+  `HistoryListItem` expand/collapse), against the running dev server.
   Confirmed `200` response, no compile errors, no runtime exceptions in
   the dev server log, and the expected text content present in the
   rendered HTML (including React's normal SSR text-node comment markers
   around `StepIndicator`'s interpolated values, which is expected
   behavior, not a bug). **The route was deleted before this report was
-  written** — it was never a real screen and isn't part of the delivered
+  written**: it was never a real screen and isn't part of the delivered
   component library.
 - Post-cleanup, `format:check`/`lint`/`build` were re-run to confirm the
   repository is exactly as clean with the temp route removed as it was
@@ -172,12 +172,12 @@ to a named `docs/15` section or Component Inventory entry directly.
 Per the milestone's explicit exclusions, none of the following were
 built:
 
-- Any of the 11 frozen Guardian AI screens themselves — this milestone
+- Any of the 11 frozen Guardian AI screens themselves: this milestone
   built the parts, not the assemblies.
 - Onboarding flow, dashboard functionality, or any simulation/detection
   logic.
-- A bottom sheet component (§3 — explicitly out of MVP scope per
+- A bottom sheet component (§3, explicitly out of MVP scope per
   `docs/15`).
-- Wiring the design system into `/` or `/demo` — Milestone 1's
+- Wiring the design system into `/` or `/demo`: Milestone 1's
   placeholder pages and `AppShell` are unchanged; a future milestone will
   replace them using this library.

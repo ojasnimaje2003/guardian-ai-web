@@ -11,8 +11,8 @@ import { Button } from "@/components/design-system/button";
 import { CheckmarkDraw } from "@/components/design-system/checkmark-draw";
 
 /**
- * Onboarding Complete — docs/13 Screen 6. "This entire screen *is* the
- * success state" — reaching it means onboarding is already done, so
+ * Onboarding Complete: docs/13 Screen 6. "This entire screen *is* the
+ * success state": reaching it means onboarding is already done, so
  * `onboardingStep` is marked "done" on arrival, not on the Done tap
  * (which is a confirmation, not a decision point, per the doc).
  */
@@ -38,7 +38,7 @@ export default function OnboardingCompletePage() {
         </div>
         <Display>
           You&apos;re set up. Guardian AI is now watching quietly in the
-          background — you won&apos;t hear from it unless something looks wrong.
+          background. You won&apos;t hear from it unless something looks wrong.
         </Display>
         <Button
           variant="filled"

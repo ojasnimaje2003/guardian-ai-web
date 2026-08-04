@@ -12,8 +12,8 @@ import { Card } from "@/components/design-system/card";
 import { Button } from "@/components/design-system/button";
 
 /**
- * Phone State Permission — docs/13 Screen 3. On a real device this is
- * Android's standard runtime permission dialog (`READ_PHONE_STATE`) —
+ * Phone State Permission: docs/13 Screen 3. On a real device this is
+ * Android's standard runtime permission dialog (`READ_PHONE_STATE`),
  * system UI, outside app design control. There is no browser
  * equivalent, so the dialog itself is simulated here as a clearly
  * in-app card (not a fake OS chrome recreation) the visitor actually
@@ -33,7 +33,7 @@ export default function PhoneStatePermissionPage() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Only advance onboarding progress during first-time onboarding — this
+  // Only advance onboarding progress during first-time onboarding: this
   // screen is also reached post-onboarding via Home/Settings' "Fix
   // this" repair path, which must never regress a completed
   // onboardingStep back to an earlier one (see docs/14 §14).
@@ -46,7 +46,7 @@ export default function PhoneStatePermissionPage() {
     setResult(granted ? "granted" : "denied");
     setTimeout(() => {
       // Reached via Home/Settings' "Fix this" (docs/13 Screen 10's
-      // "direct, one-tap path back into the relevant grant flow") — fix
+      // "direct, one-tap path back into the relevant grant flow"): fix
       // just this one permission and return, don't force the rest of
       // the onboarding sequence on someone who already finished it.
       if (isRepairMode) {
@@ -64,7 +64,7 @@ export default function PhoneStatePermissionPage() {
         <StepIndicator current={2} total={5} />
         <Heading as="h1">Confirming call access</Heading>
         <Body className="text-muted-foreground">
-          Android will ask to confirm this — tap Allow.
+          Android will ask to confirm this. Tap Allow.
         </Body>
 
         {dialogVisible && !result && (
@@ -93,7 +93,7 @@ export default function PhoneStatePermissionPage() {
           <div className="gap-sm text-primary animate-in fade-in ease-standard flex items-center duration-200">
             <Check className="size-5" aria-hidden />
             <Body>
-              {result === "granted" ? "Allowed" : "Denied — continuing"}
+              {result === "granted" ? "Allowed" : "Denied, continuing"}
             </Body>
           </div>
         )}

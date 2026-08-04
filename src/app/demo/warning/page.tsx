@@ -17,23 +17,23 @@ import { Button } from "@/components/design-system/button";
 import { BottomActionBar } from "@/components/design-system/bottom-action-bar";
 
 /**
- * Scam Warning — docs/13 Screen 8, "the single most important screen
+ * Scam Warning: docs/13 Screen 8, "the single most important screen
  * in the product." Implemented exactly per spec:
  * - Full-bleed, no app bar, no back button (ScreenContainer full-bleed).
- * - **Zero entrance transition** — the one deliberate exception to
+ * - **Zero entrance transition**: the one deliberate exception to
  *   every other screen's motion language. Do not wrap this in
  *   FadeThrough or add any animate-in/duration class to the root.
- * - No back-dismiss — only the three explicit actions can leave this
+ * - No back-dismiss: only the three explicit actions can leave this
  *   screen (history-trap effect below).
- * - Automatic (non-opt-in) read-aloud announcement on appearance —
+ * - Automatic (non-opt-in) read-aloud announcement on appearance:
  *   the one deliberate accessibility exception in the whole app.
  * - Asymmetric three-action stack: "End the call now" (Filled,
- *   `concern` tone, tallest button in the app — a deliberate exception
+ *   `concern` tone, tallest button in the app, a deliberate exception
  *   to standard button height), "Notify [Contact]" (Filled Tonal),
  *   "This is fine" (Text, smallest, bottom-most).
  *
  * The detected app is fixed to AnyDesk for this demo (the frozen MVP
- * has exactly one detection pattern) — `KNOWN_SCREEN_SHARE_APPS[0]`.
+ * has exactly one detection pattern): `KNOWN_SCREEN_SHARE_APPS[0]`.
  */
 export default function ScamWarningPage() {
   const router = useRouter();
@@ -58,7 +58,7 @@ export default function ScamWarningPage() {
     return () => window.removeEventListener("popstate", trap);
   }, []);
 
-  // Distinct haptic on appearance (docs/13 §4 Screen 8) — a no-op on
+  // Distinct haptic on appearance (docs/13 §4 Screen 8): a no-op on
   // desktop browsers and devices without vibration support.
   useEffect(() => {
     if (typeof navigator !== "undefined" && "vibrate" in navigator) {
@@ -66,11 +66,11 @@ export default function ScamWarningPage() {
     }
   }, []);
 
-  const announcement = `Possible scam pattern detected. You're on a call, and ${detectedApp.displayName} just opened — scammers often ask for this to access your phone or accounts.`;
+  const announcement = `Possible scam pattern detected. You're on a call, and ${detectedApp.displayName} just opened. Scammers often ask for this to access your phone or accounts.`;
 
   // Live regions are announced more reliably by screen readers when
   // their content *changes* after mount than when it's already present
-  // at first paint — starting empty and setting it here (rather than
+  // at first paint. Starting empty and setting it here (rather than
   // rendering `announcement` directly) makes the automatic read-aloud
   // (docs/13 Screen 8's one opt-out accessibility exception) dependable
   // across screen readers, not just the ones that announce on insert.
@@ -86,8 +86,8 @@ export default function ScamWarningPage() {
 
   function finish(baseAction: ActionTaken, message: string) {
     const notified = notifyState === "sent";
-    // docs/14 §15's ActionTaken enum includes NOTIFIED as its own value
-    // — when the contact was notified, that's the more significant,
+    // docs/14 §15's ActionTaken enum includes NOTIFIED as its own value:
+    // when the contact was notified, that's the more significant,
     // product-relevant fact and takes priority over how the warning
     // was otherwise dismissed, even though the UI still lets the user
     // separately end the call or dismiss after notifying.
@@ -118,7 +118,7 @@ export default function ScamWarningPage() {
 
   return (
     <ScreenContainer variant="full-bleed">
-      {/* Automatic read-aloud — announced immediately, not opt-in, per docs/13 Screen 8. */}
+      {/* Automatic read-aloud: announced immediately, not opt-in, per docs/13 Screen 8. */}
       <div role="status" aria-live="assertive" className="sr-only">
         {announced}
       </div>
@@ -130,14 +130,14 @@ export default function ScamWarningPage() {
 
         <div className="gap-md flex flex-1 flex-col justify-center">
           <BodyLarge>
-            You&apos;re on a call, and {detectedApp.displayName} just opened —
-            scammers often ask for this to access your phone or accounts.
+            You&apos;re on a call, and {detectedApp.displayName} just opened.
+            Scammers often ask for this to access your phone or accounts.
           </BodyLarge>
           <Caption>
             Detected: {detectedApp.displayName} opened at{" "}
             {/* This screen is only ever reached via client-side
                 navigation from /demo/call in normal use, so hydration
-                never actually races here — suppressed defensively for
+                never actually races here, suppressed defensively for
                 the edge case of a direct/refreshed visit, where the
                 prerendered build-time clock and the real client clock
                 would otherwise legitimately differ. */}
@@ -183,9 +183,9 @@ export default function ScamWarningPage() {
 
         <Button
           variant="text"
-          onClick={() => finish("marked_fine", "Got it — marked as fine.")}
+          onClick={() => finish("marked_fine", "Got it. Marked as fine.")}
         >
-          This is fine — I know this person
+          This is fine, I know this person
         </Button>
       </BottomActionBar>
     </ScreenContainer>

@@ -3,20 +3,20 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 /**
- * Card — docs/15 Task 2 "Components → Cards" and "Elevation".
+ * Card: docs/15 Task 2 "Components → Cards" and "Elevation".
  *
  * `variant="filled"` (default) is MD3 Filled Card, used everywhere a
  * card appears in this product (Status Card, History rows, Settings
- * rows) — not Elevated Card, keeping shadow use minimal per the doc's
+ * rows), not Elevated Card, keeping shadow use minimal per the doc's
  * elevation philosophy. `variant="outlined"` is used *only* for the
  * rare Data-unavailable/error variant of the Status Card, where a
  * visible border helps it read as distinct from the normal filled state
  * without a jarring color change.
  *
  * Elevation "level1" (default) is a subtle surface-tint lift only, no
- * visible shadow — Status Card, History list items, Settings rows.
+ * visible shadow: Status Card, History list items, Settings rows.
  * "none" is for cards that sit flush with the screen background.
- * Level 3 (visible shadow) is Dialog's territory, not Card's — see
+ * Level 3 (visible shadow) is Dialog's territory, not Card's. See
  * confirm-dialog.tsx.
  *
  * 12dp radius (`--radius-card`) is applied unconditionally.

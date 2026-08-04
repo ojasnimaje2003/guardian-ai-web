@@ -9,13 +9,13 @@ import { cn } from "@/lib/utils";
  * App-shell-level navigation behavior for every screen (docs/15 Task 4):
  * - 200ms fade-through on every route change (the doc's default screen
  *   transition), except Scam Warning, whose zero-transition entrance is
- *   a documented, deliberate exception — never fade that one.
+ *   a documented, deliberate exception: never fade that one.
  * - Moves keyboard focus to the new screen's content on navigation.
  *   Next.js client-side routing doesn't do this itself (unlike a full
  *   page load), so without it a keyboard user's focus is silently left
  *   on a now-unmounted control after every navigation.
  * - Announces the new screen to screen readers via a polite live
- *   region, for the same reason — an SPA route change is otherwise
+ *   region, for the same reason: an SPA route change is otherwise
  *   invisible to assistive tech.
  */
 const ROUTE_TITLES: Record<string, string> = {
@@ -49,7 +49,7 @@ export function RouteTransition({ children }: { children: ReactNode }) {
       return;
     }
     // Scam Warning announces itself, more urgently (assertive), via its
-    // own live region — a second, competing "polite" announcement here
+    // own live region. A second, competing "polite" announcement here
     // would only add noise.
     if (!skipTransition) {
       setAnnouncement(ROUTE_TITLES[pathname] ?? "Guardian AI");
